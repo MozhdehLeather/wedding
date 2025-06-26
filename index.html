@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibil & Nikitha's Wedding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Nothing+You+Could+Do&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --paper: #f9f5f0;
+            --ink: #333;
+            --pencil: #888;
+            --highlight: #8b0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nothing You Could Do', cursive;
+            background-color: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            padding: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23ddd" stroke-width="0.5" stroke-dasharray="5,5" /></svg>');
+        }
+
+        .invitation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Hand-drawn border effect */
+        .invitation-card {
+            background: white;
+            padding: 50px;
+            margin-bottom: 40px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--pencil);
+            border-radius: 2px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23888" stroke-width="0.3" stroke-dasharray="3,3" /></svg>');
+        }
+
+        /* Profile picture circle */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--ink);
+            display: block;
+            margin: 0 auto 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .profile-pic::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px dashed var(--pencil);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Couple names */
+        .couple-names {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--highlight);
+            position: relative;
+        }
+
+        .couple-names::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--pencil);
+            opacity: 0.5;
+        }
+
+        /* Welcome message */
+        .welcome-message {
+            font-family: 'Shadows Into Light', cursive;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        /* Details section */
+        .details {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .detail-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: var(--ink);
+        }
+
+        .detail-text {
+            font-size: 1.1rem;
+        }
+
+        /* Gallery section */
+        .gallery-section {
+            background: white;
+            padding: 40px;
+            border: 1px solid var(--pencil);
+            border-radius: 2px;
+            margin-top: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23888" stroke-width="0.3" stroke-dasharray="3,3" /></svg>');
+            position: relative;
+        }
+
+        .gallery-section::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px dashed var(--pencil);
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--highlight);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            border: 1px solid var(--pencil);
+            background: var(--paper);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: rotate(-1deg) scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            padding: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--pencil);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .invitation-card, .gallery-section {
+                padding: 30px;
+            }
+            
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .couple-names {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .invitation-card, .gallery-section {
+                padding: 20px;
+            }
+            
+            .profile-pic {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .couple-names {
+                font-size: 2rem;
+            }
+            
+            .welcome-message {
+                font-size: 1.1rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <div class="invitation-card">
+            <!-- Profile picture -->
+            <img src="https://i.pinimg.com/736x/2c/dc/42/2cdc422a48b7cc4a3e154ca054ed4984.jpg" alt="Vibil & Nikitha" class="profile-pic">
+            
+            <!-- Couple names -->
+            <h1 class="couple-names">Vibil & Nikitha</h1>
+            
+            <!-- Welcome message -->
+            <p class="welcome-message">
+                Our hearts overflow with joy as we invite you <br>
+                to witness the beginning of our forever
+            </p>
+            
+            <!-- Wedding details -->
+            <div class="details">
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt detail-icon"></i>
+                    <span class="detail-text">Saturday, 17th June 2024</span>
+                </div>
+                
+                <div class="detail-item">
+                    <i class="fas fa-clock detail-icon"></i>
+                    <span class="detail-text">4:30 in the evening</span>
+                </div>
+                
+                <div class="detail-item">
+                    <i class="fas fa-map-marker-alt detail-icon"></i>
+                    <span class="detail-text">Bonne Hall Plantation, Charleston</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gallery section with 28 images -->
+        <div class="gallery-section">
+            <h2 class="section-title">Our Journey</h2>
+            <div class="gallery-grid" id="gallery">
+                <!-- Gallery images will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>We can't wait to celebrate with you!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load all 28 gallery images
+            const gallery = document.getElementById('gallery');
+            for (let i = 1; i <= 28; i++) {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = `output/${i.toString().padStart(2, '0')}.jpg`;
+                img.alt = `Vibil & Nikitha photo ${i}`;
+                img.loading = 'lazy';
+                
+                galleryItem.appendChild(img);
+                gallery.appendChild(galleryItem);
+            }
+            
+            // Add hand-drawn effect to all borders
+            const elements = document.querySelectorAll('.invitation-card, .gallery-section, .gallery-item');
+            elements.forEach(el => {
+                el.style.border = `1px solid var(--pencil)`;
+                el.style.borderRadius = '2px';
+            });
+        });
+    </script>
+</body>
+</html>
